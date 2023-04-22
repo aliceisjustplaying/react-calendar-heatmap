@@ -39,8 +39,5 @@ export function getDateDifferenceInDays(startDate, endDate) {
 export function getISODate(date) {
   const clone = new Date(date);
   clone.setHours(12);
-  return clone
-    .toISOString()
-    .split('T')
-    .shift();
+  return clone.toISOString().split('T').shift();
 }

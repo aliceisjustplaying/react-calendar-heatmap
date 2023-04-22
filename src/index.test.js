@@ -1,5 +1,5 @@
 import React from 'react';
-import { prettyDOM, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CalendarHeatmap from './index';
 import { dateNDaysAgo, startOfDay, getISODate, shiftDate } from './helpers';

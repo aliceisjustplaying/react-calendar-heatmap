@@ -1,0 +1,5 @@
+{
+  "rootDir": "src",
+  "coverageDirectory": "<rootDir>/../coverage",
+  "testEnvironment": "jsdom"
+}

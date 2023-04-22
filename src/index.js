@@ -17,6 +17,24 @@ const MONTH_LABEL_GUTTER_SIZE = 4;
 const CSS_PSEDUO_NAMESPACE = 'react-calendar-heatmap-';
 
 class CalendarHeatmap extends React.Component {
+  handleClick(value) {
+    if (this.props.onClick) {
+      this.props.onClick(value);
+    }
+  }
+
+  handleMouseOver(e, value) {
+    if (this.props.onMouseOver) {
+      this.props.onMouseOver(e, value);
+    }
+  }
+
+  handleMouseLeave(e, value) {
+    if (this.props.onMouseLeave) {
+      this.props.onMouseLeave(e, value);
+    }
+  }
+
   getSquareSizeWithGutter() {
     return SQUARE_SIZE + this.props.gutterSize;
   }
@@ -202,24 +220,6 @@ class CalendarHeatmap extends React.Component {
     return [0, (weekIndex + 1) * this.getSquareSizeWithGutter() + verticalOffset];
   }
 
-  handleClick(value) {
-    if (this.props.onClick) {
-      this.props.onClick(value);
-    }
-  }
-
-  handleMouseOver(e, value) {
-    if (this.props.onMouseOver) {
-      this.props.onMouseOver(e, value);
-    }
-  }
-
-  handleMouseLeave(e, value) {
-    if (this.props.onMouseLeave) {
-      this.props.onMouseLeave(e, value);
-    }
-  }
-
   renderSquare(dayIndex, index) {
     const indexOutOfRange =
       index < this.getNumEmptyDaysAtStart() ||
@@ -296,16 +296,18 @@ class CalendarHeatmap extends React.Component {
         this.props.horizontal ? '' : `${CSS_PSEDUO_NAMESPACE}small-text`
       } ${CSS_PSEDUO_NAMESPACE}weekday-label`;
       // eslint-disable-next-line no-bitwise
-      return dayIndex & 1 ? (
+      return (
         <text key={`${x}${y}`} x={x} y={y} className={cssClasses}>
           {weekdayLabel}
         </text>
-      ) : null;
+      );
     });
   }
 
   render() {
     this.valueCache = this.getValueCache(this.props);
+
+    console.log('this should definitely fire three');
 
     return (
       <svg className="react-calendar-heatmap" viewBox={this.getViewBox()}>
